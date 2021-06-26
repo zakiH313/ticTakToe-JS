@@ -1,0 +1,95 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+body {
+  font-family: "Merriweather Sans", sans-serif;
+  color: #4c6986;
+}
+
+.wrapper {
+  height: 800px;
+  max-width: 1440px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+h1 {
+  font-size: 70px;
+  font-weight: bold;
+}
+
+.restart {
+  width: 175px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid;
+  border-radius: 50px;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  font-weight: bold;
+  margin-top: 30px;
+}
+
+.restart:hover {
+  color: white;
+  background-color: #4c6986;
+}
+
+.game {
+  width: 500px;
+  height: 500px;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  display: flex;
+  color: #9a9a9a;
+  font-size: 24px;
+}
+
+.header .player-x,
+.header .player-o {
+  flex: 1;
+  border-bottom: 5px solid #eee;
+  padding-bottom: 8px;
+}
+
+.board {
+  display: grid;
+  /* repeat(3, 1fr) == 1fr 1fr 1fr */
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  grid-gap: 0px;
+  flex-grow: 1;
+  padding: 10px;
+}
+
+.board-tile {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 80px;
+  background-color: white;
+  cursor: pointer;
+}
+
+/* 1st 2 cols (tiles that are not in a multiple of 3 pos) */
+.board-tile:not(:nth-child(3n)) {
+  border-right: 3px solid rgba(137, 163, 189, 0.58);
+}
+
+/* target all tiles except last row */
+.board-tile:not(:nth-last-child(-n + 3)) {
+  border-bottom: 3px solid rgba(137, 163, 189, 0.58);
+}
+
+.board-tile:hover {
+  background-color: #eee;
+}
