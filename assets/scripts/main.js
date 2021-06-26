@@ -9,6 +9,10 @@ document.querySelector(".restart").addEventListener("click", () => {
   onRestart();
 });
 
+document.querySelector(".night-svg-cta").addEventListener("click", () => {
+  changeColorTheme();
+});
+
 let tiles = document.querySelectorAll(".board-tile");
 tiles.forEach((tile) => {
   tile.addEventListener("click", () => {
@@ -24,6 +28,29 @@ function onTileClick(i) {
 function onRestart() {
   game = new Game();
   gameView.updateBoard(game);
+}
+
+function changeColorTheme() {
+  toggleStyle(document.querySelector(".night-svg-cta"), "color", "white");
+  toggleStyle(
+    document.getElementsByTagName("body")[0],
+    "background-color",
+    "black"
+  );
+  toggleStyle(document.getElementsByTagName("h1")[0], "color", "white");
+  for (let i = 0; i < game.board.length; i++) {
+    const tile = document.querySelector(`.board-tile[data-index='${i}']`);
+    toggleStyle(tile, "background-color", "black");
+  }
+  toggleStyle(document.querySelector(".restart"), "color", "white");
+}
+
+function toggleStyle(el, styleName, value) {
+  if (el.style[styleName] !== value) {
+    el.style[styleName] = value;
+  } else {
+    el.style[styleName] = "";
+  }
 }
 
 gameView.updateBoard(game);
